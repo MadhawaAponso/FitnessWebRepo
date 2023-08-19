@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import login from './screens/login';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import SplashScreen from './screens/spalshscreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+// import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+const stack = createStackNavigator();
+function App(){
+    return( 
+       <stack.Navigator initialRouteName='Splash' screenOptions={{headerShown:false}}>
+            <stack.Screen name="Splash" component={SplashScreen}/>
+            <stack.Screen name ="login" component={login}/>
+        </stack.Navigator>
+
+    )
+
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default() =>{
+    return(
+        // <SafeAreaProvider>
+            <NavigationContainer>
+                <App/>
+            </NavigationContainer>
+        // </SafeAreaProvider>
+    )
+}
